@@ -1,0 +1,26 @@
+form{
+	position: fixed;
+	left: 42%;
+	top: 27%;
+}
+span{
+	position:fixed;
+	font-size: 11px;
+	color: red;
+}
+/* 提交按钮css样式 */
+#handin{
+	font-weight: bold;
+	height: auto;
+	width: 70px;
+	position: fixed;
+	left: 43%;
+}
+/* 清除按钮css样式 */
+#reset{
+	font-weight: bold;
+	height: auto;
+	width: 70px;
+	position: fixed;
+	left: 48.5%;
+}

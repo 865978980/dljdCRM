@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!--开启注解支持-->
+    <context:component-scan base-package="com.xiaoli">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--配置事务管理器-->
+<!--    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="comboPooledDataSource"></property>
+    </bean>
+    &lt;!&ndash;配置事务的通知&ndash;&gt;
+    <tx:advice id="txTransaction" transaction-manager="dataSourceTransactionManager">
+        &lt;!&ndash;设置属性&ndash;&gt;
+&lt;!&ndash;        <tx:attributes>
+            <tx:method name="s"/>
+        </tx:attributes>&ndash;&gt;
+    </tx:advice>
+    建立切入点和事务通知联系,AOP增强
+    <aop:config>
+        <aop:pointcut id="tx1" expression="execution(* com.xiaoli.service.*.*(..))"/>
+        <aop:advisor advice-ref="txTransaction" pointcut-ref="tx1"></aop:advisor>
+    </aop:config>-->
+
+    <!--整合mybatis-->
+    <!--配置连接池-->
+    <bean id="comboPooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bjpowernode"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+    <!--配置工厂-->
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="comboPooledDataSource"></property>
+    </bean>
+    <!--配置映射-->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.xiaoli.dao"></property>
+    </bean>
+</beans>

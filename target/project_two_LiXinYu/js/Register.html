@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="jquery/jquery-3.4.1.js"></script>
+	<link type="text/css" rel="stylesheet" href="../css/Register.css" />
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+	
+	<script type="text/javascript">
+		onload=function(){
+			/* 用户名称 */
+			/* 用户名称的正则表达式 */
+			var regExpUser = /^[a-zA-Z]([一-龥A-Za-z0-9_]{0,7})$/;
+			/* 获得用户名称文本框焦点，检验用户名称文本框内容,如果为空给出提示*/
+			$("#user").focus(
+				function judgeUserValueFocus(){
+					if($("#user").val() == ""){
+						$("#span1").html("<font>*用户名以字母开头，可由汉字，数字，字母，下划线组成，<br>最大长度为8且不能为空</font>");
+					}
+				}
+			)
+			/* 用户名称键盘弹起事件，重新检验用户名称文本框内容,并给出相应提示 */
+			$("#user").keyup(
+				function changeUserValueKeyup(event){
+					if(regExpUser.test($("#user").val())){
+						$("#span1").html("<font color='blue'>*用户名可使用</font>");
+					}else{
+						$("#span1").html("<font>*用户名不正确，请重新输入（用户名以字母开头，可由汉字，数字，<br>字母，下划线组成，最大长度为8且不能为空）</font>");
+					}
+						
+				}
+			)
+			
+			/* 注册账号 */
+			/* 账号的正则表达式 */
+			var regExpUsername = /^[a-zA-Z0-9]{8,10}$/;
+			/* 获得注册账号文本框焦点，检验账号注册文本框内容,如果为空给出提示 */
+			$("#username").focus(
+				function judgeUsernameValueFocus(){
+					if($("#username").val() === ""){
+						$("#span2").text("*账号最长为10位,最短为8位(可由数字，字母组成)");
+					}
+				}
+			)	
+			/* 注册账号键盘弹起事件，重新检验注册账号文本框内容,并给出相应提示*/
+			$("#username").keyup(
+				function changeUsernameValueKeyup(event){
+					if(regExpUsername.test($("#username").val())){
+						$("#span2").html("<font color='blue'>*注册成功</font>");
+					}else{
+						$("#span2").text("*账号不合法,请重新输入(账号最长为10位,最短为8位,可由数字，字母组成)");
+					}
+					if($("#username").val() == ""){
+						$("#span2").text("*账号不能为空");
+					}
+				}
+			)
+			
+			/* 注册密码 */
+			/* 密码的正则表达式 */
+			var regExpPassword = /^[a-zA-Z0-9_]{1,12}$/;
+			/* 获取注册密码框的焦点,检验注册密码框的内容,如果为空给出提示 */
+			$("#password").focus(
+				function judgePasswordValueFocus(){
+					if($("#password").val() == ""){
+						$("#span3").text("*密码最长为12位(密码可由数字，字母，下划线组成)");
+					}
+				}
+			)
+			/* 注册密码键盘弹起事件*/
+			$("#password").keyup(
+				function changePasswordValueKeyup(event){
+					/* 重新检验注册密码框 */
+					if(regExpPassword.test($("#password").val())){
+						$("#span3").html("<font color='blue'>*注册成功</font>");
+					}else{
+						$("#span3").text("*输入的密码不正确(密码可由数字，字母，下划线组成且不能为空)");
+					}
+					/* 当注册密码框发生改变时确认密码框给出提示 */
+					if($("#password").val() != $("#confirmpassword").val()){
+						$("#span4").text("*请输入注册的密码");
+					}else{
+						$("#span4").html("<font color='blue'>*两次密码输入一致</font>");
+					}
+					/* 当注册密码框为空时,确认密码框的提示 */
+					if($("#password").val() == "" && $("#confirmpassword").val() != ""){
+						$("#span4").text("*注册密码和确认密码不一致");
+					}
+					/* 注册密码框和确认密码框都为空 */
+					if($("#password").val() == "" && $("#confirmpassword").val() == ""){
+						$("#span4").text("*注册密码不能为空");
+					}
+				}
+			)
+			
+			/* 确认密码 */
+			/* 获取确认密码框的焦点 */
+			$("#confirmpassword").focus(
+				function judgeConfirmpasswordValueFocus(){
+					/* 获取焦点时的提示 */
+					if($("#password").val() == "" && $("#span4").text() == ""){
+						$("#span4").text("*密码还未注册");
+					}
+				}
+			)
+			/* 确认密码框键盘弹起事件，判断是否和注册密码框值一致,并给出相应提示 */
+			$("#confirmpassword").keyup(
+				function changeIdenticalPasswordKeyup(){
+					if($("#password").val() != "" && $("#password").val() === $("#confirmpassword").val()){
+						$("#span4").html("<font color='blue'>*两次密码输入一致</font>");
+					}else{
+						$("#span4").text("*请重新输入，注册密码和确认密码不一致");
+					}
+					if($("#password").val() == "" && $("#confirmpassword").val() == ""){
+						$("#span4").text("*密码还未注册")
+					}
+				}
+			)
+			
+			/* 身份证号 */
+			/* 身份证号的正则表达式 */
+			var regExpIDcard = /^([0-9]){15,18}(x|X)?$/;
+			/* 获取身份证号文本框的焦点,如果为空给出相应提示*/
+			$("#IDcard").focus(
+				function judgeIDcardValueFocus(){
+					if($("#IDcard").val() == ""){
+						$("#span5").text("*请输入身份证号");
+					}
+				}
+			)
+			/* 身份证号文本框键盘弹起事件，重新检验身份证号文本框的值，并给出相应提示 */
+			$("#IDcard").keyup(
+				function changeIDcardValueKeyup(){
+					if(regExpIDcard.test($("#IDcard").val())){
+						$("#span5").html("<font color='blue'>*身份证号合法</font>");
+					}else{
+						$("#span5").text("*您输入的身份证号不合法");
+					}
+					if($("#IDcard").val() == ""){
+						$("#span5").text("*身份证号不能为空");
+					}
+				}
+			)
+			
+			/* 邮箱地址 */
+			/* 邮箱的正则表达式 */
+			var regExpEmail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+			/* 获取邮箱地址文本框的焦点,检验邮箱地址文本框的内容，如果为空给出提示 */
+			$("#email").focus(
+				function judgeEmailValueFocus(){
+					if($("#email").val() == ""){
+						$("#span6").text("请输入您的邮箱地址");
+					}
+				}
+			)
+			/* 邮箱地址文本框键盘弹起事件，重新检验邮箱地址文本框内容，并给出相应提示 */
+			$("#email").keyup(
+				function changeEmailValueKeyup(){
+					if(regExpEmail.test($("#email").val())){
+						$("#span6").html("<font color='blue'>邮箱地址合法</font>")
+					}else{
+						$("#span6").text("邮箱地址不合法");
+					}
+					if($("#email").val() == ""){
+						$("#span6").text("请输入合法的邮箱地址");
+					}
+				}
+			)
+			
+			/* 提交表单 */
+ 			$("#handin").click(
+					function judgeSubmitValue(){
+						/* alert($("#span1").html()); */
+						/* \" */
+ 						if($("#span1").html() == "<font color=\"blue\">*用户名可使用</font>" 
+							&& $("#span2").html() == "<font color=\"blue\">*注册成功</font>"
+ 							&& $("#span3").html() == "<font color=\"blue\">*注册成功</font>"
+							&& $("#span4").html() == "<font color=\"blue\">*两次密码输入一致</font>"
+							&& $("#span5").html() == "<font color=\"blue\">*身份证号合法</font>" ){
+								/* alert("ss"); */
+								$("#register").submit();
+								/* document.getElementById("register").submit(); */
+						}
+				}
+			 )
+		}
+	</script>
+	
+</head>
+<body>
+		<form action="https://www.baidu.com/" id="register" >
+			用户名称:&nbsp <input id="user" type="text" name="user" maxlength="8"/>&nbsp <span id="span1"></span><br><br>
+			注册账号:&nbsp <input id="username" type="text" name="username" maxlength="10"/>&nbsp <span id="span2"></span><br><br>
+			注册密码:&nbsp <input id="password" type="password" name="password"/>&nbsp <span id="span3"></span><br/><br>
+			确认密码:&nbsp <input id="confirmpassword" type="password"/>&nbsp <span id="span4"></span><br/><br>
+			性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别: &nbsp <input type="radio" name="gender" value="1" checked>男
+							<input type="radio" name="gender" value="0">女<br/><br>
+			身份证号:&nbsp <input id="IDcard" type="text" name="IDcard"/>&nbsp <span id="span5"></span><br/><br>
+			邮箱地址:&nbsp <input id="email" type="text" name="email"/>&nbsp <span id="span6"></span><br/><br>
+			<input id="handin" type="button" value="注册">
+			<input id="reset" type="reset" value="取消">
+		</form>
+</body>
+</html>

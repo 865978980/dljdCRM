@@ -1,0 +1,47 @@
+body{
+	background-image: url(../iamge/古风注册背景图.jpg);
+	background-size: auto 990px;
+	/* background: url(古风注册背景图.jpg); */
+	
+}
+#head{
+	padding-top: 2cm;
+	padding-left: 47cm;
+	font-size:29px;
+}
+#author{
+	padding-top: 0.5cm;
+	padding-left: 46cm;
+	font-weight: lighter;
+	font-style: oblique;
+	font-size: 23px;
+}
+#inner{
+	max-height: 0cm;
+	padding-left: 44cm;
+	font-size: 20px;
+}
+#inner1{
+	max-height: 0cm;
+	padding-left: 43cm;
+	font-size: 20px;
+}
+#inner2{
+	max-height: 0cm;
+	padding-left: 42cm;
+	font-size: 20px;
+}
+#inner3{
+	max-height: 0cm;
+	padding-left: 41cm;
+	font-size: 20px;
+}
+a{
+	position: fixed;
+	padding-top: 6cm;
+	padding-left: 44cm;
+	font-size: 25px;
+}
+/*
+	<link rel="stylesheet" type="text/css" href="资源位置">
+/
